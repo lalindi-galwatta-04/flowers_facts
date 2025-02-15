@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Flower Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .fact-display {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow-wrap: break-word;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Random Flower Facts</h1>
+        <div id="factDisplay" class="fact-display">Click the button to get a random fact!</div>
+        <button id="factButton">Get Fact</button>
+    </div>
+    <script>
+        const flowerFacts = [
+            { "fact": "There are over 400,000 species of flowering plants in the world." },
+            { "fact": "Flowers are the reproductive structures of angiosperms, which are plants that produce seeds enclosed within a fruit." },
+            { "fact": "The largest flower in the world is the Rafflesia arnoldii, which can grow up to 3 feet in diameter." },
+            { "fact": "Some flowers, like the sunflower, can turn their heads to follow the sun throughout the day." },
+            { "fact": "The scent of flowers is produced by volatile organic compounds, which can attract pollinators." },
+            { "fact": "Certain flowers, such as the lotus, can bloom in muddy waters and are considered symbols of purity." },
+            { "fact": "Flowers can have different meanings in various cultures; for example, red roses symbolize love." },
+            { "fact": "Many flowers are edible and can be used in cooking, such as nasturtiums and violets." },
+            { "fact": "Bees are one of the most important pollinators for flowers, helping to fertilize them and produce seeds." },
+            { "fact": "Some flowers, like the corpse flower, emit a foul odor to attract specific pollinators, such as carrion beetles." }
+        ];
+
+        let attempts = 0;
+
+        const factDisplay = document.getElementById('factDisplay');
+        const factButton = document.getElementById('factButton');
+
+        factButton.addEventListener('click', () => {
+            if (attempts < 3) {
+                const randomIndex = Math.floor(Math.random() * flowerFacts.length);
+                factDisplay.textContent = flowerFacts[randomIndex].fact;
+                attempts++;
+            } else {
+                moveButton();
+            }
+        });
+
+        function moveButton() {
+            const button = document.getElementById('factButton');
+            const randomX = Math.random() * (window.innerWidth - button.offsetWidth);
+            const randomY = Math.random() * (window.innerHeight - button.offsetHeight);
+            button.style.position = 'absolute';
+            button.style.left = `${randomX}px`;
+            button.style.top = `${randomY}px`;
+        }
+    </script>
+</body>
+</html>
